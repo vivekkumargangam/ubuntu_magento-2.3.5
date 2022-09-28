@@ -1,0 +1,17 @@
+﻿ISSUES FACED DURING RUNNING THE CONTAINER FOR CUSTOMIZED MAGENTO2.3.5 IMAGE
+
+
+ISSUES FACED DURING RUNNING THE CONTAINER FOR CUSTOMIZED MAGENTO2.3.5 IMAGE
+
+>>> While running the container i got the authentication keys issue
+    
+    changes have to be made in docker file
+    
+    >>> removed COPY auth.json /root/.config/composer/auth.json (this path will work only for composer 2.0.0 version)
+    >>> attached COPY auth.json /root/.composer/auth.json (this path will work for composer 1.10.15)
+    
+>>> while running the container got the followin error
+
+ 
+ 
+
