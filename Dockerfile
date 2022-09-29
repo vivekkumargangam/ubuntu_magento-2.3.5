@@ -11,12 +11,13 @@ apt install mysql-server -y && service mysql start && mysql -uroot -proot -e "CR
 # elasticsearch installation
 curl -fsSL https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add - && echo "deb https://artifacts.elastic.co/packages/7.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-7.x.list && apt-get update && apt-get install default-jdk gnupg elasticsearch=7.6.0 -y &&\
 # composer installation
-php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && php -r "if (hash_file('sha384', 'composer-setup.php') === '55ce33d7678c5a611085589f1f3ddf8b3c52d662cd01d4ba75c0ee0459970c2200a51f492d557530c71c15d8dba01eae') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;" && php composer-setup.php && php -r "unlink('composer-setup.php');" && sudo mv composer.phar /usr/local/bin/composer && composer self-update 1.10.22
+php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && php -r "if (hash_file('sha384', 'composer-setup.php') === '55ce33d7678c5a611085589f1f3ddf8b3c52d662cd01d4ba75c0ee0459970c2200a51f492d557530c71c15d8dba01eae') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;" && php composer-setup.php && php -r "unlink('composer-setup.php');" && sudo mv composer.phar /usr/local/bin/composer
 COPY php.ini /etc/php/7.4/cli/php.ini
 COPY elasticsearch.yml /etc/elasticsearch/elasticsearch.yml
 COPY default /etc/nginx/sites-available/
 COPY auth.json /root/.composer/auth.json
 COPY env.php /var/www/html
 COPY servicesstart.bkp.sh /
+COPY start.sh /
 ENTRYPOINT ["/servicesstart.bkp.sh"]
 
